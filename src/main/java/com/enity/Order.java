@@ -27,7 +27,7 @@ public class Order implements Serializable {
 
     private Integer id;
     @ApiModelProperty("订单编码")
-    @NotBlank(message = "订单错误",groups = {Group.Update.class})
+    @NotBlank(message = "订单错误", groups = {Group.Update.class})
     private String no;
 
     @ApiModelProperty("始发地")
@@ -43,7 +43,6 @@ public class Order implements Serializable {
     private TransportModeEnum transportMode;
 
     @ApiModelProperty("价格")
-
     @NotNull(message = "价格不能为空", groups = {Group.Insert.class})
     private BigDecimal price;
 

@@ -29,7 +29,7 @@ public interface StoreRoomDao {
      * @return 影响条数
      */
     @ReturnCheck
-    @Insert("insert into storeroom set name = ${storeRoom.name},inventory = ${storeRoom.inventory},max_Inventory = ${storeRoom.maxInventory}")
+    @Insert("insert into storeroom set no = '${storeRoom.no}',name = '${storeRoom.name}',inventory = ${storeRoom.inventory},max_Inventory = ${storeRoom.maxInventory}")
     int addStoreRoom(@Param("storeRoom") StoreRoom storeRoom);
 
     /**
