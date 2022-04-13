@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: czh
+    password: Agnesa123!!
+    url: jdbc:mysql://bj-cynosdbmysql-grp-h106bbf8.sql.tencentcdb.com:27836/logistics?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      stat-view-servlet:
+        url-pattern: /druid/*
+  redis:
+    # 地址
+    host: 39.105.221.7
+    # 端口号
+    port: 6379
+    # 密码
+    password: 123456qwe
+    # 超时时间，单位毫秒
+    timeout: 3000
+    # 数据库编号
+    database: 0
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: com.handler.CodeEnumTypeHandler
+
+
+
+
+
