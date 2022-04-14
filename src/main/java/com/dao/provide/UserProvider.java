@@ -18,7 +18,7 @@ public class UserProvider {
     public String insertUser(User user) {
         return "INSERT INTO user\n" + "SET " + "no = '" + user.getNo() +
                 "',name = '" + user.getName() +
-                "',password = '" + user.getPassword() + "'" +
+                "',password = '" + user.getPassword() +
                 "',tel = '" + user.getTel() + "'";
     }
 

@@ -17,6 +17,6 @@ public class Group {
     public interface Insert {
     }
 
-    public interface CreatePic {
+    public interface Login {
     }
 }

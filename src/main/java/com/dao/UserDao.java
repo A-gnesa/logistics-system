@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.annotation.ReturnCheck;
 import com.dao.provide.UserProvider;
 import com.enity.User;
 import org.apache.ibatis.annotations.*;
@@ -22,11 +23,11 @@ public interface UserDao {
     /**
      * 通过name查找用户
      *
-     * @param name name
+     * @param tel tel
      * @return User
      */
-    @Select("SELECT * FROM user WHERE name = '${name}'")
-    User findUserByName(@Param("name") String name);
+    @Select("SELECT * FROM user WHERE tel = '${tel}'")
+    User findUserByTel(@Param("tel") String tel);
 
     /**
      * 根据用户名检查密码
@@ -34,8 +35,8 @@ public interface UserDao {
      * @param user user
      * @return 返回用户条数
      */
-    @Select("SELECT count(1) FROM user WHERE name = '${user.name}' AND password = '${user.password}'")
-    int checkPasswordByUserName(@Param("user") User user);
+    @Select("SELECT count(1) FROM user WHERE tel = '${user.tel}' AND password = '${user.password}'")
+    int checkPasswordByTel(@Param("user") User user);
 
     /**
      * 更新用户信息
@@ -44,6 +45,7 @@ public interface UserDao {
      * @return 返回用户条数
      */
     @UpdateProvider(type = UserProvider.class, method = "updateUser")
+    @ReturnCheck
     int updateUser(User user);
 
     /**
@@ -55,6 +57,14 @@ public interface UserDao {
     @Select("SELECT count(1) FROM user WHERE name = '${user.name}'")
     int checkUserByName(@Param("user") User user);
 
+    /**
+     * 查询电话是否重复
+     *
+     * @param user user
+     * @return 返回用户条数
+     */
+    @Select("SELECT count(1) FROM user WHERE name = '${user.tel}'")
+    int checkUserByTel(@Param("user") User user);
 
     /**
      * 创建用户
@@ -63,6 +73,7 @@ public interface UserDao {
      * @return 插入个数
      */
     @InsertProvider(type = UserProvider.class, method = "insertUser")
+    @ReturnCheck
     int insertUser(User user);
 
 }
