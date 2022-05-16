@@ -29,7 +29,7 @@ public interface StoreRoomDao {
      * @return 影响条数
      */
     @ReturnCheck
-    @Insert("insert into storeroom set no = '${storeRoom.no}',name = '${storeRoom.name}',inventory = ${storeRoom.inventory},max_Inventory = ${storeRoom.maxInventory}")
+    @Insert("insert into storeroom set no = '${storeRoom.no}',name = '${storeRoom.name}',inventory = ${storeRoom.inventory},max_Inventory = ${storeRoom.maxInventory},manager_no = '${storeRoom.managerNo}',city = '${storeRoom.city}'")
     int addStoreRoom(@Param("storeRoom") StoreRoom storeRoom);
 
     /**
@@ -40,4 +40,24 @@ public interface StoreRoomDao {
     @ReturnCheck
     @InsertProvider(type = StoreRoomProvider.class, method = "update")
     int updateStoreRoom(StoreRoom storeRoom);
+
+    /**
+     * 自增库存
+     * @param storeRoom 库存编码
+     * @return 影响条数
+     */
+    @ReturnCheck
+    @Update("UPDATE storeroom SET update_time = now(),inventory = inventory + 1 WHERE no = '${storeRoom.no}'")
+    int addInventory(@Param("storeRoom") StoreRoom storeRoom);
+
+    /**
+     * 自减库存
+     * @param storeRoom 库存编码
+     * @return 影响条数
+     */
+    @ReturnCheck
+    @Update("UPDATE storeroom SET update_time = now(),inventory = inventory - 1 WHERE no = '${storeRoom.no}'")
+    int subtractInventory(@Param("storeRoom") StoreRoom storeRoom);
+
+
 }

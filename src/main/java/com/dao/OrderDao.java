@@ -31,7 +31,10 @@ public interface OrderDao {
      */
     @ReturnCheck
     @Insert("insert into `order` set no = '${order.no}',starting_point = '${order.startingPoint}'" +
-            ",destination = '${order.destination}',price = ${order.price},transport_mode = ${order.transportMode.code},state = ${order.state.code}")
+            ",destination = '${order.destination}',price = ${order.price}," +
+            "state = ${order.state.code},sender = '${order.sender}',sender_tel = '${order.senderTel}'," +
+            "addressee = '${order.addressee}',addressee_tel = '${order.addresseeTel}'," +
+            "transport_no = '${order.transportNo}'")
     int createOrder(@Param("order") Order order);
 
     /**
@@ -42,4 +45,23 @@ public interface OrderDao {
     @ReturnCheck
     @UpdateProvider(type = OrderProvider.class,method = "update")
     int updateOrder(Order order);
+
+    /**
+     * 更改订单状态至运输中
+     * @param order order
+     * @return 影响条数
+     */
+    @ReturnCheck
+    @Update("update `order` set update_time = now(),state = 1 ,transport_no = '${order.transportNo}' WHERE no = '${order.no}'")
+    int switchOrderStateToShipments(@Param("order") Order order);
+
+
+    /**
+     * 更改订单状态至已收货
+     * @param order order
+     * @return 影响条数
+     */
+    @ReturnCheck
+    @Update("update `order` set update_time = now(),state = 2 WHERE no = '${order.no}'")
+    int switchOrderStateToReceived(@Param("order")Order order);
 }

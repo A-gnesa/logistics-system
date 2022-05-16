@@ -1,7 +1,10 @@
 package com.service;
 
+import com.annotation.ReturnCheck;
 import com.enity.MessageBean;
 import com.enity.StoreRoom;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * @Author 赵冠乔
@@ -31,4 +34,6 @@ public interface StoreRoomService {
      * @return MessageBean
      */
     MessageBean updateStoreRoom(StoreRoom storeRoom);
+
+
 }

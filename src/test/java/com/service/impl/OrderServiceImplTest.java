@@ -24,7 +24,7 @@ class OrderServiceImplTest {
     OrderService orderService;
     @Test
     void query() {
-        System.out.println(orderService.query(new Order().setState(OrderStateEnum.CREATE)));
+        System.out.println(orderService.query(new Order()));
     }
 
     @Test
@@ -33,5 +33,9 @@ class OrderServiceImplTest {
 
     @Test
     void updateOrder() {
+    }
+
+    @Test
+    void testQuery() {
     }
 }

@@ -42,9 +42,18 @@ public class StoreRoom implements Serializable {
 
     @Min(value = 0, message = "最大库存数量最小为零", groups = {Group.Insert.class})
     @Max(value = 999999999999999999L, message = "数量过大", groups = {Group.Insert.class})
-    @NotNull(message = "最大库存数量库存数量不能为空", groups = {Group.Insert.class})
+    @NotNull(message = "最大库存数量不能为空", groups = {Group.Insert.class})
     @ApiModelProperty("最大库存数量")
     private Integer maxInventory;
+
+    @ApiModelProperty("所属城市")
+    @NotBlank(message = "所属城市不能为空", groups = {Group.Insert.class})
+    private String city;
+
+    @ApiModelProperty("所属管理员")
+    @NotBlank(message = "所属管理员不能为空", groups = {Group.Insert.class})
+    private String managerNo;
+
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;

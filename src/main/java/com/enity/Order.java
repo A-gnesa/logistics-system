@@ -1,5 +1,6 @@
 package com.enity;
 
+import com.annotation.Phone;
 import com.enums.OrderStateEnum;
 import com.enums.TransportModeEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -38,13 +39,30 @@ public class Order implements Serializable {
     @NotBlank(message = "目的地不能为空", groups = {Group.Insert.class})
     private String destination;
 
-    @ApiModelProperty("运输方式")
-    @NotNull(message = "运输方式不能为空", groups = {Group.Insert.class})
-    private TransportModeEnum transportMode;
-
     @ApiModelProperty("价格")
     @NotNull(message = "价格不能为空", groups = {Group.Insert.class})
     private BigDecimal price;
+
+    @ApiModelProperty("收件人")
+    @NotBlank(message = "收件人不能为空", groups = {Group.Insert.class})
+    private String sender;
+
+    @ApiModelProperty("收件人电话")
+    @Phone
+    @NotBlank(message = "收件人电话不能为空", groups = {Group.Insert.class})
+    private String senderTel;
+
+    @ApiModelProperty("寄件人")
+    @NotBlank(message = "寄件人不能为空", groups = {Group.Insert.class})
+    private String addressee;
+
+    @ApiModelProperty("寄件人电话")
+    @Phone
+    @NotBlank(message = "寄件人电话不能为空", groups = {Group.Insert.class})
+    private String addresseeTel;
+
+    @ApiModelProperty("运输设备编码")
+    private String transportNo;
 
     @ApiModelProperty("订单状态")
     private OrderStateEnum state;

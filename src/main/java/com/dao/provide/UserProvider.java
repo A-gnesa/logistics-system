@@ -1,6 +1,7 @@
 package com.dao.provide;
 
 import com.enity.User;
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.Objects;
 
@@ -31,13 +32,13 @@ public class UserProvider {
     public String updateUser(User user) {
         StringBuilder sql = new StringBuilder("UPDATE user\n" + "SET ");
         sql.append("update_time = NOW()");
-        if (Objects.nonNull(user.getTel())) {
-            sql.append(",tel = '").append(user.getTel()).append("'");
+        if (Strings.isNotBlank(user.getPassword())) {
+            sql.append(",password = '").append(user.getPassword()).append("'");
         }
-        if (Objects.nonNull(user.getPassword())) {
-            sql.append(",password = ").append(user.getPassword());
+        if (Strings.isNotBlank(user.getName())) {
+            sql.append(",name = '").append(user.getName()).append("'");
         }
-        sql.append("WHERE no = '").append(user.getNo()).append("'");
+        sql.append(" WHERE no = '").append(user.getNo()).append("'");
         return sql.toString();
     }
 }

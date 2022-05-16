@@ -17,7 +17,7 @@ public interface UserDao {
      * @param no no
      * @return User
      */
-    @Select("SELECT * FROM user WHERE no = ${no}")
+    @Select("SELECT * FROM user WHERE no = '${no}'")
     User findUserByNo(@Param("no") String no);
 
     /**

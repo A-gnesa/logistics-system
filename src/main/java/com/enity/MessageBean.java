@@ -2,6 +2,7 @@ package com.enity;
 
 import com.enums.ErrorCodeEnum;
 import com.exception.ErrorCodeException;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 @Data
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageBean implements Serializable {
     private static final long serialVersionUID = 7192766535561421181L;
     /**

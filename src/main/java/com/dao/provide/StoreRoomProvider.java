@@ -18,7 +18,7 @@ public class StoreRoomProvider {
      * @return sql
      */
     public String selectByCondition(StoreRoom storeRoom) {
-        StringBuilder sql = new StringBuilder("select no,name, inventory, max_inventory, create_time, update_time from storeroom WHERE 1 = 1");
+        StringBuilder sql = new StringBuilder("select no,name, inventory, max_inventory, create_time,manager_no, update_time from storeroom WHERE 1 = 1");
         if (Objects.nonNull(storeRoom.getInventory())) {
             sql.append(" AND inventory = ").append(storeRoom.getInventory());
         }
@@ -28,8 +28,14 @@ public class StoreRoomProvider {
         if (Strings.isNotBlank(storeRoom.getNo())) {
             sql.append(" AND INSTR(`no`, ").append("'").append(storeRoom.getNo()).append("') > 0");
         }
-        if (Strings.isNotBlank(storeRoom.getName())){
+        if (Strings.isNotBlank(storeRoom.getName())) {
             sql.append(" AND INSTR(`name`, ").append("'").append(storeRoom.getName()).append("') > 0");
+        }
+        if (Strings.isNotBlank(storeRoom.getManagerNo())) {
+            sql.append(" AND manager_no = '").append(storeRoom.getManagerNo()).append("' ");
+        }
+        if (Strings.isNotBlank(storeRoom.getCity())) {
+            sql.append(" AND city = '").append(storeRoom.getCity()).append("' ");
         }
         return sql.toString();
     }
@@ -48,10 +54,13 @@ public class StoreRoomProvider {
         if (Objects.nonNull(storeRoom.getInventory())) {
             sql.append(",inventory = ").append(storeRoom.getInventory());
         }
-        if (Strings.isNotBlank(storeRoom.getName())){
+        if (Strings.isNotBlank(storeRoom.getName())) {
             sql.append(" , name = ' ").append(storeRoom.getName()).append("'");
         }
-        sql.append("where no = '").append(storeRoom.getNo()).append("'");
+        if (Strings.isNotBlank(storeRoom.getCity())) {
+            sql.append(" city = '").append(storeRoom.getCity()).append("' ");
+        }
+        sql.append(" where no = '").append(storeRoom.getNo()).append("'");
         return sql.toString();
     }
 }
